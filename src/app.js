@@ -1,10 +1,26 @@
 const http = require('http');
 const server = http.createServer();
+const url = require('url');
+
+function set_response(response, content, status=200) {
+    response.writeHead(status, {'Content-Type':'text/plain'});
+    response.write(content);
+}
 
 server.on('request', (request, response) => {
-   response.writeHead(200, {'Content-Type':'text/plain'});
-   response.write('Hello world');
-   response.end();
+    let path = url.parse(request.url).pathname;
+    console.log(path);
+
+    if (path === '/') { //is gelijk en is het type gelijk
+        set_response(response, 'Hello World');
+    } else if (path === '/about') {
+        set_response(response, 'Made by VIVES student. ;)');
+    } else {
+        set_response(response, 'Error', 400);
+    }
+
+    
+    response.end();
 });
 
 server.listen(3000, () => {

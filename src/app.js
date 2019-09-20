@@ -1,28 +1,21 @@
-const http = require('http');
-const server = http.createServer();
-const url = require('url');
+const express = require('express');
+const app = express();
+const PORT = 3000;
 
-function set_response(response, content, status=200) {
-    response.writeHead(status, {'Content-Type':'text/plain'});
-    response.write(content);
-}
-
-server.on('request', (request, response) => {
-    let path = url.parse(request.url).pathname;
-    console.log(path);
-
-    if (path === '/') { //is gelijk en is het type gelijk
-        set_response(response, 'Hello World');
-    } else if (path === '/about') {
-        set_response(response, 'Made by VIVES student. ;)');
-    } else {
-        set_response(response, 'Error', 400);
-    }
-
-    
-    response.end();
+//Basic routes
+app.get('/', (request,response) => {
+   response.send('Hello World');
 });
 
-server.listen(3000, () => {
-  console.log('Node server created at port 3000');
+app.get('/about',(request,response) => {
+   response.send('This app was made by VIVES peoples');
 });
+
+//Express error handling middleware
+app.use((request,response) => {
+   response.type('text/plain');
+   response.status(505);
+   response.send('Error page');
+});
+
+app.listen(PORT, () => console.log(`Example app listening on port ${PORT}!`))

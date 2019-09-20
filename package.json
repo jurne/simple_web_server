@@ -1,0 +1,25 @@
+{
+  "name": "simple_web_server",
+  "version": "1.0.0",
+  "description": "Demo of Node.js web server",
+  "main": "./src/app.js",
+  "scripts": {
+    "start": "node ./src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jurne/simple_web_server.git"
+  },
+  "keywords": [
+    "demo",
+    "web",
+    "server"
+  ],
+  "author": "Jurne Decadt",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jurne/simple_web_server/issues"
+  },
+  "homepage": "https://github.com/jurne/simple_web_server#readme"
+}
